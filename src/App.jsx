@@ -5,7 +5,7 @@ import EmployPanel from './Components/DashBoard/EmployPanel'
 
 const App = () => {
   return (
-    <div >
+    <div className='bg-black text-white'>
     {/* <Login/> */}
     <EmployPanel/>
     </div>
