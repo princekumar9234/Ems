@@ -4,7 +4,7 @@ const EmpTask = ({data}) => {
   return (
     <div
       id="EmpTask"
-      className="h-[52%] lg:h-[30%]  overflow-x-auto flex items-center flex-nowrap gap-3 px-1  py-4 w-full mt-5 lg:mt-10"
+      className="h-[52%] lg:h-[60%]  overflow-x-auto flex items-center flex-nowrap gap-3 px-1  py-4 w-full mt-5 lg:mt-10"
     >
 
       <div className="  shrink-0  bg-red-400 h-full w-1/2 lg:w-75 rounded-xl">
