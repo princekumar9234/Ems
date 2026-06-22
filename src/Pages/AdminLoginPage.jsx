@@ -24,7 +24,7 @@ const AdminLoginPage = () => {
   return (
       <div className="mt-3 bg-[#1C1C1C]">
         <form
-          className="lg:flex w-full justify-between p-10"
+          className="lg:flex w-full justify-between gap-5 p-4 "
           onSubmit={(e) => {
             handleFrom(e);
           }}
@@ -57,8 +57,9 @@ const AdminLoginPage = () => {
               onChange={(elem) => {
                 setAssign(elem.target.value);
               }}
+              placeholder="Employee name"
               type="text"
-              className="outline-none p-1 px-3 border-2 rounded-lg placeholder:text-gray-200  "
+              className="outline-none py-1 px-3 border-2 rounded-lg placeholder:text-gray-200  "
               
             />
 
@@ -91,7 +92,7 @@ const AdminLoginPage = () => {
               className="outline-none p-2 px-3 border-2 rounded-lg placeholder:text-gray-200  "
 
             ></textarea>
-            <button className="bg-red-500 mt-6 text-2xl py-2  rounded-lg font-bold">
+            <button className="bg-red-500 mt-7 text-2xl py-2  rounded-lg font-bold">
               Create task
             </button>
           </div>

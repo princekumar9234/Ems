@@ -12,20 +12,22 @@ const EmpTask = ({data}) => {
       className="h-[52%] lg:h-[60%]  overflow-x-auto flex items-center flex-nowrap gap-3 px-1  py-4 w-full mt-5 lg:mt-10"
     >
           
-      <AcceptTask data={data}/>
-
-
-       <NewTask data={data}/>
-
-
-      <FailTask data={data}/>
-
-
-      <CompletedTask data ={data}/>
-
-
-    
+     {data.tasks.map((idx,elem)=>{
      
+        if(elem.active){
+        return <AcceptTask key={idx}/>
+      }
+      if(elem.newTsk){
+        return <NewTask  key={idx}/>
+      }
+      if(elem.failed){
+        return <FailTask  key={idx}/>
+      }
+      if(elem.completed){
+        return <CompletedTask  key={idx}/>
+      }
+     
+     })}
      
     </div>
   );

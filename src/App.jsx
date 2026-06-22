@@ -12,12 +12,15 @@ const App = () => {
   const [user, setUser] = useState(null);
 const [loggedInuserData, setLoggedInuserData] = useState(null)
 
-  // useEffect(() => {
-  // const loggedInUser =localStorage.getItem("loggedInUser")
-  //   if(loggedInUser){
-  //     setUser(loggedInUser.role)
-  //   }
-  // }, [AuthData])
+  useEffect(() => {
+   const loggedInUser =localStorage.getItem("loggedInUser")
+ 
+   if(loggedInUser) {
+    const userData = JSON.parse(loggedInUser)
+    setUser(userData.role)
+    setLoggedInuserData(userData.data)
+   }
+},[ ])
   
 
   const handleLogin = (email, password) => {
@@ -29,7 +32,7 @@ const [loggedInuserData, setLoggedInuserData] = useState(null)
       if(employee){
 setUser("employee");
 setLoggedInuserData(employee)
-      localStorage.setItem('loggedInUser',JSON.stringify({role:'employee'}))
+      localStorage.setItem('loggedInUser',JSON.stringify({role:'employee', data:employee}))
       }
       
 
@@ -41,7 +44,7 @@ setLoggedInuserData(employee)
   return (
     <>
       {!user ? <Login handleLogin={handleLogin} /> : ""}
-      {user === "admin" && <AdminDashBoard />}
+      {user === "admin" && <AdminDashBoard /> }
       {user === "employee" && <EmployDashBoard data={loggedInuserData}/>}
     </>
   );
