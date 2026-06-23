@@ -11,8 +11,22 @@ const AdminLoginPage = () => {
 
   const handleFrom = (e) => {
     e.preventDefault();
-    setTask({taskTitle,taskDescription,taskDate,category,active:false,NewTask:true,failed:true,completed:false})
-   console.log(task)
+    setTask({taskTitle,taskDescription,taskDate,category,active:false,NewTask:true,failed:false,completed:false})
+   const data =JSON.parse(localStorage.getItem('employee'))
+   
+   data.forEach(function(elem){
+      if(assign == elem.firstName){
+     elem.tasks.push(task)
+     elem.taskCounts.newTask=elem.taskCounts.newTask+1
+   }
+  })
+
+  localStorage.setItem('employee', JSON.stringify(data))
+  setTaskTitle('')
+  setTaskDescription('')
+  setTaskDate('')
+  setCategory('')
+  setAssign('')
   };
 
   return (
