@@ -8,7 +8,11 @@ const EmpTask = ({ data }) => {
   return (
     <div
       id="EmpTask"
+<<<<<<< HEAD
       className="h-[40%] lg:h-[60%]  overflow-x-auto flex items-center flex-nowrap gap-3 px-1  py-4 w-full mt-5 lg:mt-10"
+=======
+      className="h-[40%] lg:h-[60%]  overflow-x-auto flex items-center flex-nowrap gap-3 px-1  py-4 w-full mt-7 lg:mt-10"
+>>>>>>> 14f42ae77a1d7eca44d55aa32c8eef5427b414fd
     >
       {data.tasks.map((elem, idx) => {
         if (elem.active) {
