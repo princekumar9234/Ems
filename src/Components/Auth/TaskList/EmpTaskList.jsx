@@ -2,7 +2,7 @@ import React from 'react'
 
 const EmpTaskList = ({data}) => {
   return (
-    <div className='flex justify-between text-nowrap lg:flex-nowrap lg:mt-5 lg:gap-3 flex-wrap gap-2'>
+    <div className='flex justify-between text-nowrap lg:flex-nowrap mt-5 lg:gap-3 flex-wrap gap-2'>
         <div className='h-30 w-[47%] mt-3  rounded-2xl px-3 py-4 lg:px-3 border text-red-500'>
            <h2 className='text-4xl font-semibold m-2'>{data.taskCounts.newTask}</h2>
            <p className='text-2xl lg:text-3xl font-bold'>New Tasks</p>
