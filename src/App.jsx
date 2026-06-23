@@ -12,6 +12,7 @@ const App = () => {
   const [user, setUser] = useState(null);
 const [loggedInuserData, setLoggedInuserData] = useState(null)
 
+
   useEffect(() => {
    const loggedInUser =localStorage.getItem("loggedInUser")
  
@@ -33,8 +34,10 @@ const [loggedInuserData, setLoggedInuserData] = useState(null)
 setUser("employee");
 setLoggedInuserData(employee)
       localStorage.setItem('loggedInUser',JSON.stringify({role:'employee', data:employee}))
-      }
-      
+      } 
+        else {
+          alert('invalid Credentials')
+        }
 
     } else {
       alert("invalid Credentials");
@@ -44,8 +47,8 @@ setLoggedInuserData(employee)
   return (
     <>
       {!user ? <Login handleLogin={handleLogin} /> : ""}
-      {user === "admin" && <AdminDashBoard /> }
-      {user === "employee" && <EmployDashBoard data={loggedInuserData}/>}
+      {user === "admin" && <AdminDashBoard changeUser={setUser}/> }
+      {user === "employee" && <EmployDashBoard changeUser={setUser} data={loggedInuserData}/>}
     </>
   );
 };
