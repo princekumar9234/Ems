@@ -8,23 +8,18 @@ const EmpTask = ({ data }) => {
   return (
     <div
       id="EmpTask"
-
-      className="h-[40%] lg:h-[60%]  overflow-x-auto flex items-center flex-nowrap gap-3 px-1  py-4 w-full mt-5 lg:mt-10"
-
-      className="h-[40%] lg:h-[60%]  overflow-x-auto flex items-center flex-nowrap gap-3 px-1  py-4 w-full mt-7 lg:mt-10"
-
+      className="h-[40%] lg:h-[60%] overflow-x-auto flex items-center flex-nowrap gap-3 px-1 py-4 w-full mt-7 lg:mt-10"
     >
       {data.tasks.map((elem, idx) => {
+        if (elem.newTask) {
+          return <NewTask key={idx} data={elem} />;
+        }
         if (elem.active) {
           return <AcceptTask key={idx} data={elem} />;
-        }
-        if (elem.newTsk) {
-          return <NewTask key={idx} data={elem} />;
         }
         if (elem.completed) {
           return <CompletedTask key={idx} data={elem} />;
         }
-
         if (elem.failed) {
           return <FailTask key={idx} data={elem} />;
         }
@@ -34,3 +29,4 @@ const EmpTask = ({ data }) => {
 };
 
 export default EmpTask;
+

@@ -1,35 +1,39 @@
 import React, { useContext, useEffect, useState } from "react";
-
-import { getLoacalStorage, setLoacalStorage } from "./Utils/LocalStorage";
 import Login from "./Pages/Login";
 import AdminDashBoard from "./Components/Auth/DashBoard/AdminDashBoard";
 import EmployDashBoard from "./Components/Auth/DashBoard/EmployDashBoard";
 import { AuthContextCreate } from "./Context/AuthContext";
 
 const App = () => {
-  const AuthData = useContext(AuthContextCreate);
-
+  const [userData, setUserData] = useContext(AuthContextCreate);
   const [user, setUser] = useState(null);
-const [loggedInuserData, setLoggedInuserData] = useState(null)
+  const [loggedInuserData, setLoggedInuserData] = useState(null);
 
 
   useEffect(() => {
-   const loggedInUser =localStorage.getItem("loggedInUser")
- 
-   if(loggedInUser) {
-    const userData = JSON.parse(loggedInUser)
-    setUser(userData.role)
-    setLoggedInuserData(userData.data)
-   }
-},[ ])
+    const loggedInUser = localStorage.getItem("loggedInUser");
+
+    if (loggedInUser && loggedInUser !== '') {
+      try {
+        const parsedUser = JSON.parse(loggedInUser);
+        if (parsedUser && parsedUser.role) {
+          setUser(parsedUser.role);
+          setLoggedInuserData(parsedUser.data || null);
+        }
+      } catch (err) {
+        // Invalid JSON - ignore karo
+        localStorage.removeItem("loggedInUser");
+      }
+    }
+  }, []);
   
 
   const handleLogin = (email, password) => {
     if (email == "princechouhan9939@gmail.com" && password == "PRINCE@18") {
       setUser("admin");
       localStorage.setItem('loggedInUser',JSON.stringify({role:'admin'}))
-    } else if (AuthData) {
-      const employee =AuthData.employee.find((e)=>email == e.email && password ==e.password)
+    } else if (userData) {
+      const employee =userData.find((e)=>email == e.email && password ==e.password)
       if(employee){
 setUser("employee");
 setLoggedInuserData(employee)

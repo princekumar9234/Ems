@@ -1,32 +1,57 @@
 import React, { useState } from "react";
-import NewTask from "../Components/Auth/TaskList/NewTask";
+import { AuthContextCreate } from "../Context/AuthContext";
+import { useContext } from "react";
+
 
 const AdminLoginPage = () => {
+ 
+  const [userData,setUserData] = useContext(AuthContextCreate);
+  
   const [taskTitle, setTaskTitle] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [taskDate, setTaskDate] = useState("");
   const [assign, setAssign] = useState("");
   const [category, setCategory] = useState("");
-  const [task, setTask] = useState({})
 
+    
   const handleFrom = (e) => {
     e.preventDefault();
-    setTask({taskTitle,taskDescription,taskDate,category,active:false,NewTask:true,failed:false,completed:false})
-   const data =JSON.parse(localStorage.getItem('employee'))
-   
-   data.forEach(function(elem){
-      if(assign == elem.firstName){
-     elem.tasks.push(task)
-     elem.taskCounts.newTask=elem.taskCounts.newTask+1
-   }
-  })
 
-  localStorage.setItem('employee', JSON.stringify(data))
-  setTaskTitle('')
-  setTaskDescription('')
-  setTaskDate('')
-  setCategory('')
-  setAssign('')
+    // Task object seedha banao - setTask async hai toh state se push karna kaam nahi karta
+    const newTaskObj = {
+      taskTitle,
+      taskDescription,
+      taskDate,
+      category,
+      active: false,
+      newTask: true,
+      failed: false,
+      completed: false,
+    };
+
+    const data = userData.map((elem) => {
+      if (assign === elem.firstName) {
+        return {
+          ...elem,
+          tasks: [...elem.tasks, newTaskObj],
+          taskCounts: {
+            ...elem.taskCounts,
+            newTask: elem.taskCounts.newTask + 1,
+          },
+        };
+      }
+      return elem;
+    });
+
+    setUserData(data);
+    // localStorage mein bhi update karo taaki refresh ke baad data rahe
+    localStorage.setItem("employee", JSON.stringify(data));
+
+    setTaskTitle("");
+    setTaskDescription("");
+    setTaskDate("");
+    setCategory("");
+    setAssign("");
   };
 
   return (
