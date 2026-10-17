@@ -1,26 +1,50 @@
 import React from "react";
+import { Calendar, Tag, CheckCircle2, XCircle, Clock } from "lucide-react";
 
-const AcceptTask = ({ data }) => {
+const AcceptTask = ({ data, onComplete, onFail }) => {
   return (
-    <div className="  shrink-0 border text-red-400 h-full w-1/2 lg:w-75 rounded-xl">
-      <div className="flex justify-between items-center m-2 mt-4 lg:m-4">
-        <h2 className="text-sm  px-2 py-1 lg:px-3 rounded lg:text-2xl border-2 text-red-800">
-          {data.category}
-        </h2>
-        <h4 className="text-sm font-bold lg:text-lg">{data.taskDate}</h4>
+    <div className="theme-card p-6 bg-white flex flex-col justify-between border-t-4 border-t-amber-500 relative">
+      <div>
+        {/* Top Header: Category & Date */}
+        <div className="flex items-center justify-between gap-2 mb-3">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-700 border border-amber-200">
+            <Tag size={12} />
+            <span>{data.category || "General"}</span>
+          </span>
+
+          <div className="flex items-center gap-1 text-xs font-medium text-neutral-500">
+            <Calendar size={13} className="text-neutral-400" />
+            <span>{data.taskDate}</span>
+          </div>
+        </div>
+
+        {/* Title */}
+        <h4 className="text-base md:text-lg font-bold text-neutral-900 tracking-tight mb-2 line-clamp-1">
+          {data.taskTitle}
+        </h4>
+
+        {/* Description */}
+        <p className="text-xs md:text-sm text-neutral-600 leading-relaxed mb-4 line-clamp-3">
+          {data.taskDescription}
+        </p>
       </div>
-      <h3 className="mt-3 lg:mt-6 font-semibold text-lg lg:text-2xl lg:font-bold px-2">
-        {data.taskTitle}
-      </h3>
-      <p className="mb-3  lg:mt-5 px-1 lg:px-3 overflow-hidden text-xl-sm">
-        {data.taskDescription}
-      </p>
-      <div className="flex justify-between m-3  md:m-8 mt-5  md:mt-8 ">
-        <button className="border-2 text-green-500 py-1 rounded px-3 text-sm">
-          Accepted
+
+      {/* Action Footer */}
+      <div className="pt-4 border-t border-[#F2EFE9] flex items-center justify-between gap-2">
+        <button
+          onClick={onFail}
+          className="flex items-center gap-1 py-1.5 px-3 rounded-full border border-neutral-200 text-neutral-600 hover:text-rose-600 hover:border-rose-300 text-xs font-medium transition-all cursor-pointer"
+        >
+          <XCircle size={13} />
+          <span>Report Issue</span>
         </button>
-        <button className="border-2 text-red-500 py-1 rounded px-3 text-sm">
-          Rejected
+
+        <button
+          onClick={onComplete}
+          className="flex items-center gap-1.5 py-1.5 px-4 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-2xs transition-all cursor-pointer"
+        >
+          <CheckCircle2 size={13} />
+          <span>Mark Done</span>
         </button>
       </div>
     </div>

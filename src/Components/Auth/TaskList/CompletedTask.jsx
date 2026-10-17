@@ -1,24 +1,41 @@
 import React from "react";
+import { Calendar, Tag, CheckCircle2 } from "lucide-react";
 
 const CompletedTask = ({ data }) => {
   return (
-    <div className=" shrink-0  border text-blue-400 h-full w-1/2 lg:w-75 rounded-xl">
-      <div className="flex justify-between items-center m-2 mt-4 lg:m-4 lg:ml-2">
-        <h2 className="text-sm  px-1 md:px-2 py-1 lg:px-4 rounded lg:text-xl border-2 text-red-800">
-          {data.category}
-        </h2>
-        <h4 className="text-sm font-bold lg:text-lg">{data.taskDate}</h4>
+    <div className="theme-card p-6 bg-white flex flex-col justify-between border-t-4 border-t-emerald-500 opacity-95">
+      <div>
+        {/* Top Header: Category & Date */}
+        <div className="flex items-center justify-between gap-2 mb-3">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+            <Tag size={12} />
+            <span>{data.category || "General"}</span>
+          </span>
+
+          <div className="flex items-center gap-1 text-xs font-medium text-neutral-500">
+            <Calendar size={13} className="text-neutral-400" />
+            <span>{data.taskDate}</span>
+          </div>
+        </div>
+
+        {/* Title */}
+        <h4 className="text-base md:text-lg font-bold text-neutral-900 tracking-tight mb-2 line-clamp-1">
+          {data.taskTitle}
+        </h4>
+
+        {/* Description */}
+        <p className="text-xs md:text-sm text-neutral-600 leading-relaxed mb-4 line-clamp-3">
+          {data.taskDescription}
+        </p>
       </div>
-      <h3 className="mt-3 lg:mt-6 font-semibold text-lg lg:text-2xl lg:font-bold px-2">
-        {data.taskTitle}
-      </h3>
-      <p className=" md:px-2  lg:mt-5  lg:px-3 text-nowrap text-sm">
-        {data.taskDescription}
-      </p>
-      <div className=" mt-10 md:mt-10 gap-4 m-1 ml-4">
-        <button className="border text-green-600  text-sm py-1 w-[95%] ">
-          Complete
-        </button>
+
+      {/* Status Footer */}
+      <div className="pt-4 border-t border-[#F2EFE9] flex items-center justify-between">
+        <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+          <CheckCircle2 size={13} />
+          <span>Completed</span>
+        </span>
+        <span className="text-[11px] text-neutral-400">Delivered</span>
       </div>
     </div>
   );

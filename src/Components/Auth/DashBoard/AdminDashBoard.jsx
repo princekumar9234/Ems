@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import AdminLoginPage from "../../../Pages/AdminLoginPage";
 import AllTaskAdmin from "../../../Pages/AllTaskAdmin";
 import EmployHeader from "../Others/EmployHeader";
 
-const AdminPanel = (props) => {
+const AdminDashBoard = (props) => {
   return (
-    <div className="px-2 py-2 bg-transparent lg:px-4">
+    <div className="min-h-screen bg-[#FBF9F5]">
       <EmployHeader changeUser={props.changeUser} />
-      <AdminLoginPage />
-      <AllTaskAdmin />
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <AdminLoginPage />
+        <AllTaskAdmin />
+      </main>
     </div>
   );
 };
 
-export default AdminPanel;
+export default AdminDashBoard;
