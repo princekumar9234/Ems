@@ -102,7 +102,7 @@ const App = () => {
   };
 
   return (
-    <div className="app-canvas min-h-screen text-neutral-900">
+    <div className="app-canvas min-h-screen text-neutral-900 w-full overflow-x-hidden">
       {!user && <Login handleLogin={handleLogin} />}
       {user === "admin" && <AdminDashBoard changeUser={setUser} />}
       {user === "employee" && (

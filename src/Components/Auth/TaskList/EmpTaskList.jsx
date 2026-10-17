@@ -46,28 +46,28 @@ const EmpTaskList = ({ data }) => {
   return (
     <div className="w-full mb-8">
       <div className="eyebrow-tag mb-3">Work Overview</div>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
         {statCards.map((stat, idx) => (
           <div
             key={idx}
-            className="theme-card p-5 md:p-6 bg-white flex flex-col justify-between"
+            className="theme-card p-4 sm:p-5 md:p-6 bg-white flex flex-col justify-between"
           >
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-neutral-500">
                 {stat.label}
               </span>
               <div
-                className={`w-9 h-9 rounded-xl flex items-center justify-center ${stat.badgeBg} ${stat.badgeColor} border ${stat.borderColor}`}
+                className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center ${stat.badgeBg} ${stat.badgeColor} border ${stat.borderColor} shrink-0`}
               >
                 {stat.icon}
               </div>
             </div>
 
             <div>
-              <div className="text-3xl md:text-4xl font-extrabold text-neutral-900 tracking-tight">
+              <div className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-neutral-900 tracking-tight">
                 {stat.count}
               </div>
-              <p className="text-xs text-neutral-500 mt-1">{stat.subtext}</p>
+              <p className="text-[11px] sm:text-xs text-neutral-500 mt-1 line-clamp-1">{stat.subtext}</p>
             </div>
           </div>
         ))}

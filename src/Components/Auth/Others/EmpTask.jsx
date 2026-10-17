@@ -31,19 +31,19 @@ const EmpTask = ({ data, onUpdateStatus }) => {
   return (
     <div className="w-full mt-6 mb-16">
       {/* Header and Filter Pills */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 sm:gap-4 mb-5 sm:mb-6">
         <div>
-          <div className="eyebrow-tag mb-2">Assigned Tasks</div>
-          <h3 className="text-2xl md:text-3xl font-extrabold text-neutral-900 tracking-tight">
+          <div className="eyebrow-tag mb-1.5 sm:mb-2">Assigned Tasks</div>
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-neutral-900 tracking-tight">
             Your task board
           </h3>
-          <p className="mt-1 text-sm text-neutral-600">
+          <p className="mt-1 text-xs sm:text-sm text-neutral-600">
             Accept incoming assignments, update ongoing progress, and verify completions.
           </p>
         </div>
 
-        {/* Filter Tabs */}
-        <div className="flex flex-wrap gap-1.5 p-1 bg-white rounded-2xl border border-[#EFEBE4] shadow-2xs">
+        {/* Filter Tabs with horizontal scroll on mobile */}
+        <div className="flex items-center gap-1.5 p-1 bg-white rounded-2xl border border-[#EFEBE4] shadow-2xs overflow-x-auto max-w-full">
           {[
             { id: "all", label: "All", count: counts.all },
             { id: "new", label: "New", count: counts.new },
@@ -54,7 +54,7 @@ const EmpTask = ({ data, onUpdateStatus }) => {
             <button
               key={tab.id}
               onClick={() => setFilter(tab.id)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap shrink-0 ${
                 filter === tab.id
                   ? "bg-[#BC1B39] text-white shadow-2xs"
                   : "text-neutral-600 hover:text-neutral-900 hover:bg-[#FAF7F2]"
@@ -77,7 +77,7 @@ const EmpTask = ({ data, onUpdateStatus }) => {
 
       {/* Task Cards Grid */}
       {filteredTasks.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {filteredTasks.map((elem) => {
             const idx = elem.originalIndex;
 

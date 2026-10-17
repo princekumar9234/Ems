@@ -7,7 +7,7 @@ const AdminDashBoard = (props) => {
   return (
     <div className="min-h-screen bg-[#FBF9F5]">
       <EmployHeader changeUser={props.changeUser} />
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-6xl mx-auto px-3.5 sm:px-6 lg:px-8 py-5 sm:py-8">
         <AdminLoginPage />
         <AllTaskAdmin />
       </main>
